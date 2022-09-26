@@ -9,7 +9,7 @@ app.use(express.json())
 const client = new stytch.Client({
     project_id: process.env.Project_ID,
     secret: process.env.Stytch_Secret,
-    env: stytch.envs.test
+    env: stytch.envs.test,
 })
 
 app.post('/login', async (req, res)=>{
@@ -20,7 +20,10 @@ app.post('/login', async (req, res)=>{
         signup_magic_link_url: 'http://localhost:3000/auth'
     }
     const response = await client.magicLinks.email.loginOrCreate(params)
+    console.log(client.project_id)
     res.json(response)
+   
+    
 })
 
 app.listen(3005, ()=>{
